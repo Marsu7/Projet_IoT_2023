@@ -347,7 +347,9 @@ Afin de réaliser ce projet, nous avons utilisé **STM32CubeIDE** pour programme
 
 L’avantage de ce logiciel est la possibilité d’utiliser un mode “debug” afin de pouvoir regarder de façon précise, étape par étape, la valeur de tous les registres.
 
-![Texte alternatif](/images/cubeide.png  "Outils Build, Run et Debug")
+![](images/cubeide.png)
+
+![Texte alternatif](images/cubeide.png  "Outils Build, Run et Debug")
 
   
 
