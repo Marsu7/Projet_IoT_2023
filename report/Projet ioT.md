@@ -73,8 +73,8 @@ Les fonctionnalités et les liaisons entre ces différents objets sont les suiva
     
 -   Quant au module **LoRa**, il permettra d’envoyer les données reçues via la prise OBD2 vers la gateway pour afficher les données sur le site **campus IoT**.
     
-    ![Texte alternatif](/images/archi_globale.png " Architecture globale du système")
-
+   ![](images/archi_globale.png " Architecture globale du système")
+ Architecture globale du système
 
 Notre projet sera divisé en 3 parties :
 
@@ -112,7 +112,8 @@ Avant de pouvoir extraire les données et de les comprendre, il est important d�
 -   fin de la trame (7 bits).
     
 
-![Texte alternatif](/images/trame_bus_can.png " Trame du bus CAN")
+![](images/trame_bus_can.png " Trame du bus CAN")
+Trame du bus CAN
   
 Les champs qui nous intéressent le plus sont le champ d'arbitrage pour réussir à identifier le message à la bonne information transmise et le champ de données pour récupérer l’information en question.
 
@@ -182,8 +183,8 @@ On a installé la bibliothèque **i-cube-lrwan** afin de pouvoir utiliser de man
 
 Il n’y a aucune sécurité des données depuis la prise OBD2 jusqu’à la carte STM32 puisqu’il n’y a aucun chiffrage de données. Cependant, la transmission des données à distance se fait en utilisant le protocole LoRaWAN. Cette technologie est sécurisée. En effet, le protocole LoRaWAN définit deux couches de sécurité: une au niveau du réseau et une au niveau de l’application.
 
-![Texte alternatif](/images/lorawan-security.png  "Chiffrement au niveau réseau et applicatif ") 
-
+![](images/lorawan-security.png  "Chiffrement au niveau réseau et applicatif ") 
+Chiffrement au niveau réseau et applicatif
 
 Au niveau du réseau, l’authenticité de l’appareil est garantie, assurant l’intégrité entre l’appareil et le serveur réseau.
 
@@ -217,15 +218,16 @@ Le présent règlement respecte tous les droits fondamentaux et observe les libe
 
   
 
-![Texte alternatif](/images/syst_complet.png  "Architecture matérielle du système ")
-
+![](images/syst_complet.png  "Architecture matérielle du système ")
+Architecture matérielle du système
   
 Comme énoncé précédemment lors de la description de l’architecture globale, au niveau matériel, le système est composée d’une carte microcontrôleur **Nucléo STM32F446**, d’un module LoRa **I-NUCLEO-LRWAN1** placé et programmé via le microcontrôleur et d’un module driver bus CAN **TJA1050**  ou d’un shield CAN **ks0411** de keyestudio.
 
-  ![Texte alternatif](/images/montage_driver.jpg  "Version 1 avec driver CAN ")
+  ![](images/montage_driver.jpg  "Version 1 avec driver CAN ")
+  Version 1 avec driver CAN
   
-![Texte alternatif](/images/montage_shield.jpg  "Version 2 avec shield CAN ")
-
+![](images/montage_shield.jpg  "Version 2 avec shield CAN ")
+Version 2 avec shield CAN
   
 
 Notre module CAN va récupérer les informations lues sur le bus en brancher les pins CAN-H et CAN-L d’une prise OBD2 directement sur le module. Une fois les données lues, elles vont être envoyées en **SPI** sur le STM32. Enfin, ces données sont envoyées sur le shield XXX qui va s’occuper de les envoyées via le réseau **LoRaWan** sur le cloud **Campus ioT**.
@@ -333,8 +335,8 @@ Tout produit utilisant des technologies de l’information et de la communicatio
 
 En ce qui concerne l’implémentation du logiciel embarqué, celle-ci consiste à choisir le microcontrôleur utilisé sur **STM32CubeIDE** et d’affecter les pins utilisés sur notre microcontrôleur, grâce à la vue IOC. Par la suite, le code se génère automatiquement et utilise des librairies fournies afin de faciliter la programmation. Après avoir implémenté, vérifié et exécuté le code sur notre microcontrôleur, nous pouvons l’utiliser.
 
- ![Texte alternatif](/images/shield_ioc.png  "Affectation des pins")
-  
+ ![](images/shield_ioc.png  "Affectation des pins")
+  Affectation des pins
   
   
  
@@ -347,10 +349,9 @@ Afin de réaliser ce projet, nous avons utilisé **STM32CubeIDE** pour programme
 
 L’avantage de ce logiciel est la possibilité d’utiliser un mode “debug” afin de pouvoir regarder de façon précise, étape par étape, la valeur de tous les registres.
 
-![](images/cubeide.png)
 
-![Texte alternatif](images/cubeide.png  "Outils Build, Run et Debug")
-
+![](images/cubeide.png  "Outils Build, Run et Debug")
+Outils Build, Run et Debug
   
 
 # Métriques du logiciel embarqué
@@ -432,8 +433,8 @@ Nous avons démarré notre travail en commençant par la conception de la partie
 
   
   
-![Texte alternatif](/images/montage_driver.jpg  "Montage 1 avec driver CAN ")
-  
+![](images/montage_driver.jpg  "Montage 1 avec driver CAN ")
+ Montage 1 avec driver CAN
 
 
   
@@ -447,8 +448,8 @@ Ainsi, au bout de nombreux tests et recherches, nous avons finalement décidé d
 
   
 
-![Texte alternatif](/images/montage_shield.jpg  "Montage 2 avec shield CAN ")
-
+![](images/montage_shield.jpg  "Montage 2 avec shield CAN ")
+Montage 2 avec shield CAN
   
 
 Le gros avantage d’utiliser ce deuxième shield est que le montage est plus simple. Il y a donc moins de sources d’erreurs possibles au niveau materiel. Cependant, le gros problème avec ce shield est qu’il a été créé pour être utilisé sous Arduino et non sur STM32. Ainsi, il y avait très peu d’informations sur internet concernant son utilisation sur STM32. Finalement, nous nous sommes basés sur une librairie d’un projet qui a été spécialement créé pour travailler en C sur STM32, à partir de la librairie du constructeur en C++ pour Arduino.
